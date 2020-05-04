@@ -20,12 +20,34 @@ class RomanNumberTest(unittest.TestCase):
         self.assertEqual(romanos.romano_a_entero('KKK'), 'Error en formato')
         self.assertEqual(romanos.romano_a_entero('MK'), 'Error en formato')
 
-    def only_three(self):
+    def test_only_five(self):
         self.assertEqual(romanos.romano_a_entero('IIII'), 'Error en formato')
 
     def test_decreasing_numbers(self):
         self.assertEqual(romanos.romano_a_entero('XVIII'), 18)
+        self.assertEqual(romanos.romano_a_entero('III'), 3)
+        self.assertEqual(romanos.romano_a_entero('XI'), 11)
+        self.assertEqual(romanos.romano_a_entero('XV'), 15)
+        self.assertEqual(romanos.romano_a_entero('XX'), 20)
+
+    def test_digitos_restan(self):
+        self.assertEqual(romanos.romano_a_entero('XIX'), 19)
+
+    def test_resta_separacion_un_grado(self):
+        self.assertEqual(romanos.romano_a_entero('XC'), 90)
         self.assertEqual(romanos.romano_a_entero('IL'), 'Error en formato')
+        self.assertEqual(romanos.romano_a_entero('XD'), 'Error en formato')
+        self.assertEqual(romanos.romano_a_entero('XM'), 'Error en formato')
+        self.assertEqual(romanos.romano_a_entero('IL'), 'Error en formato')
+
+    def test_resta_de_multiplos_5_no(self):
+        self.assertEqual(romanos.romano_a_entero('VC'), 'Error en formato')
+        self.assertEqual(romanos.romano_a_entero('XCV'), 95)
+
+    def test_resta_un_solo_simbolo(self):
+        self.assertEqual(romanos.romano_a_entero('XXL'), 'Error en formato')
+        self.assertEqual(romanos.romano_a_entero('IXL'), 'Error en formato')
+        self.assertEqual(romanos.romano_a_entero('XXX'), 30)
 
 
 if __name__ == "__main__":
