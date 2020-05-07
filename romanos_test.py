@@ -50,5 +50,42 @@ class RomanNumberTest(unittest.TestCase):
         self.assertEqual(romanos.romano_a_entero('XXX'), 30)
 
 
+class RomantoIntegerTest(unittest.TestCase):
+    def test_traduccion_digitos_simples(self):
+        self.assertEqual(romanos.entero_a_romano(1), 'I')
+        self.assertEqual(romanos.entero_a_romano(10), 'X')
+        self.assertEqual(romanos.entero_a_romano(5), 'V')
+        self.assertEqual(romanos.entero_a_romano(50), 'L')
+        self.assertEqual(romanos.entero_a_romano(100), 'C')
+        self.assertEqual(romanos.entero_a_romano(500), 'D')
+        self.assertEqual(romanos.entero_a_romano(1000), 'M')
+
+    def test_traduccion_digitos_complejos_unidades(self):
+        self.assertEqual(romanos.entero_a_romano(2), 'II')
+        self.assertEqual(romanos.entero_a_romano(3), 'III')
+        self.assertEqual(romanos.entero_a_romano(4), 'IV')
+        self.assertEqual(romanos.entero_a_romano(6), 'VI')
+        self.assertEqual(romanos.entero_a_romano(7), 'VII')
+        self.assertEqual(romanos.entero_a_romano(8), 'VIII')
+        self.assertEqual(romanos.entero_a_romano(9), 'IX')
+        self.assertEqual(romanos.entero_a_romano(30), 'XXX')
+        self.assertEqual(romanos.entero_a_romano(200), 'CC')
+        self.assertEqual(romanos.entero_a_romano(400), 'CD')
+        self.assertEqual(romanos.entero_a_romano(3000), 'MMM')
+
+    def test_busca_valor(self):
+        self.assertEqual(romanos.busca_valor_menor_o_igual(2), ('I', 1))
+        self.assertEqual(romanos.busca_valor_menor_o_igual(5), ('V', 5))
+        self.assertEqual(romanos.busca_valor_menor_o_igual(7), ('V', 5))
+
+    def test_descomponer(self):
+        self.assertEqual(romanos.descomponer(1942), [1000, 900, 40, 2])
+
+    def test_entero_a_romano(self):
+        self.assertEqual(romanos.entero_a_romano(1942), 'MCMXLII')
+        self.assertEqual(romanos.entero_a_romano(3999), 'MMMCMXCIX')
+        self.assertEqual(romanos.entero_a_romano(4000), 'Overflow')
+
+
 if __name__ == "__main__":
     unittest.main()
